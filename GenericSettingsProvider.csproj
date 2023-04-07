@@ -12,6 +12,7 @@
 		<Description>A custom settings provider with hooks that allow settings to be stored outside of the typical settings file such as a database.</Description>
 		<PackageId>ChrisKaczor.GenericSettingsProvider</PackageId>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<AssemblyName>ChrisKaczor.GenericSettingsProvider</AssemblyName>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
