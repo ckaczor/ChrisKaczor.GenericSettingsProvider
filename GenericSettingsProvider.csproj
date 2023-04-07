@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>ChrisKaczor.GenericSettingsProvider</RootNamespace>
+		<Title>ChrisKaczor.GenericSettingsProvider</Title>
+		<Authors>Chris Kaczor</Authors>
+		<Product>ChrisKaczor.GenericSettingsProvider</Product>
+		<RepositoryUrl>https://github.com/ckaczor/ChrisKaczor.GenericSettingsProvider</RepositoryUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Description>A custom settings provider with hooks that allow settings to be stored outside of the typical settings file such as a database.</Description>
+		<PackageId>ChrisKaczor.GenericSettingsProvider</PackageId>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+</Project>
