@@ -37,7 +37,7 @@ namespace ChrisKaczor.GenericSettingsProvider
 
         public override string ApplicationName { get; set; } = string.Empty;
 
-        public bool DeleteOldVersionsOnUpgrade { get; set; }
+        public bool DeleteOldVersionsOnUpgrade { get; set; } = false;
 
         public override void Initialize(string name, NameValueCollection config)
         {
@@ -69,7 +69,7 @@ namespace ChrisKaczor.GenericSettingsProvider
             }
 
             // Close the data store
-            CloseDataStore!(dataStore);
+            CloseDataStore?.Invoke(dataStore);
 
             return values;
         }
@@ -94,7 +94,7 @@ namespace ChrisKaczor.GenericSettingsProvider
             }
 
             // Close the data store
-            CloseDataStore!(dataStore);
+            CloseDataStore?.Invoke(dataStore);
         }
 
         #endregion
@@ -112,10 +112,10 @@ namespace ChrisKaczor.GenericSettingsProvider
             var currentVersion = GetCurrentVersion();
 
             // Get a distinct list of version numbers 
-            var versionList = GetVersionList!(dataStore);
+            var versionList = GetVersionList?.Invoke(dataStore);
 
             // Sort the list using the Version object and get the first value
-            var previousVersion = versionList.Where(v => v < currentVersion).MaxBy(v => v);
+            var previousVersion = versionList?.Where(v => v < currentVersion).MaxBy(v => v);
 
             return previousVersion;
         }
@@ -160,10 +160,10 @@ namespace ChrisKaczor.GenericSettingsProvider
             var dataStore = OpenDataStore!();
 
             // Delete all settings for this version
-            DeleteSettingsForVersion!(dataStore, version);
+            DeleteSettingsForVersion?.Invoke(dataStore, version);
 
             // Close the data store
-            CloseDataStore!(dataStore);
+            CloseDataStore?.Invoke(dataStore);
         }
 
         public SettingsPropertyValue GetPreviousVersion(SettingsContext context, SettingsProperty property)
@@ -189,7 +189,7 @@ namespace ChrisKaczor.GenericSettingsProvider
             value = GetPropertyValue(dataStore, property, previousVersion);
 
             // Close the data store
-            CloseDataStore!(dataStore);
+            CloseDataStore?.Invoke(dataStore);
 
             return value;
         }
@@ -237,7 +237,7 @@ namespace ChrisKaczor.GenericSettingsProvider
             }
 
             // Close the data store
-            CloseDataStore!(dataStore);
+            CloseDataStore?.Invoke(dataStore);
         }
 
         #endregion
