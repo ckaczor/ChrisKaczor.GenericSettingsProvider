@@ -15,6 +15,24 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: GetRevision@1
+  displayName: 'Get Revision'
+  inputs:
+    VariableName: Revision
+
+- task: Assembly-Info-NetCore@3
+  displayName: 'Set Assembly Info'
+  inputs:
+    Path: '$(Build.SourcesDirectory)'
+    FileNames: '**/*.csproj'
+    InsertAttributes: true
+    FileEncoding: 'utf-8'
+    WriteBOM: true
+    FailOnWarning: true
+    Authors: 'Chris Kaczor'
+    Copyright: 'Copyright $(date:YYYY) Chris Kaczor'
+    FileVersion: '1.0.$(Revision)'
+    PackageVersion: '1.0.$(Revision)'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
